@@ -1,0 +1,40 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### General ###
+.metadata/
+.recommenders/
+Servers/
+FakeSMTP/
+AppSpring/
+HelloSpring/
+PersonManagement/
+spring-security-registration/
+
+new_app_spring_jpa/.idea/
+new_app_spring_jpa/.mvn/
+new_app_spring_jpa/target/
+new_app_spring_jpa/.gitignore
+
