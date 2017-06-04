@@ -1,4 +1,4 @@
-package com.thieunv.presentation.controllers;
+package com.thieunv.presentation.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;

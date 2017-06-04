@@ -1,4 +1,4 @@
-package com.thieunv.presentation.controllers;
+package com.thieunv.presentation.controller;
 
 /**
  * Created by thieunv on 04/06/2017.

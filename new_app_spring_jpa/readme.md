@@ -27,3 +27,33 @@ https://www.jetbrains.com/help/idea/2017.1/database-tool-window.html
 
 ## Localization 
 http://memorynotfound.com/spring-mvc-internationalization-i18n-example/
+
+## Persitence.xml in Spring Boot 
+- Có thể dùng hoặc không dùng. Câu trả lời bên dưới 
+https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-jta.html
+https://stackoverflow.com/questions/20848485/spring-boot-cannot-use-persistence
+https://docs.spring.io/spring-boot/docs/current/reference/html/howto-data-access.html
+https://stackoverflow.com/questions/20808290/spring-jpa-hibernate-no-qualifying-bean-of-type-javax-persistence-entitymanag/20850535?noredirect=1#comment31278706_20850535
+
+
+## JPA (Java Persitence API)
+- JPa là interface của ORM (Object Relational Mapping )
+- ORM là specific implementation của JPA 
+- Nó dùng để định danh các truy cập, mapping giữa Java object và Database tables;
+
+- Jpa không phải là SQL 
+- Nó sử dụng JPQL (Java Persistence Query Language) để giao tiếp giữa POJOs và Java objects 
+
+- Vì nó là interface provider nên có rất nhiều loại để chọn 
+- TopLink(EclipseLink), OpenJPA, Versant, Hibernate ,...
+
+- Thường dùng Hibernate.
+- Câu hỏi là: Tại sao ta không dùng trực tiếp Hibernate mà phải dùng Hibernate thông qua JPA 
+
++ Vì: Nếu ta muốn đổi Provider thì sao? 
+        
+## Entity 
+- POJO kèm theo @Entity, @Id 
+
+
+https://app.pluralsight.com/player?course=spring-jpa-hibernate&author=bryan-hansen&name=springjpa-m7-jpaannotation&clip=0&mode=live
