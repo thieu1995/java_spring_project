@@ -2,6 +2,8 @@ package com.thieunv.presentation.controller;
 
 import com.thieunv.business.service.ContactService;
 import com.thieunv.data.dto.ContactDTO;
+import com.thieunv.data.model.Contact;
+import com.thieunv.helper.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -22,9 +24,6 @@ import java.util.Locale;
 @RequestMapping("contact")
 public class ContactController {
 
-    private static final String VIEW_LIST_CONTACT_PAGE = "contact/contact_list";
-    private static final String VIEW_CONTACT_FORM_PAGE  = "contact/contact_form";
-
     private final ContactService contactService;
     private final MessageSource messageSource;
     @Autowired
@@ -38,23 +37,22 @@ public class ContactController {
     public String viewListContactPage(Model model, Locale locale) {
         model.addAttribute("title", messageSource.getMessage("index.title", null, locale));
         model.addAttribute("greeting", messageSource.getMessage("index.greeting", null, locale));
-        return VIEW_LIST_CONTACT_PAGE;
+        return Constant.ContactController.VIEW_LIST_CONTACT_PAGE;
     }
 
     @RequestMapping(value="/add", method = RequestMethod.GET)
     public String viewFromCreateNewContact(Model model, Locale locale) {
-        model.addAttribute("title", messageSource.getMessage("index.title", null, locale));
-        model.addAttribute("greeting", messageSource.getMessage("index.greeting", null, locale));
-        return VIEW_CONTACT_FORM_PAGE;
+        model.addAttribute(Constant.ContactController.MODEL_CONTACT_NAME, new Contact());
+        return Constant.ContactController.VIEW_CONTACT_FORM_PAGE;
     }
 
     @RequestMapping(value="/add/save", method = RequestMethod.POST)
     public String processFromCreateNewContact(@Valid @ModelAttribute ContactDTO contactDTO, BindingResult result, Locale locale) {
         if(result.hasErrors()) {
-            return VIEW_CONTACT_FORM_PAGE;
+            return Constant.ContactController.VIEW_CONTACT_FORM_PAGE;
         }
         this.contactService.save(contactDTO.transferToContact());
-        return VIEW_LIST_CONTACT_PAGE;
+        return Constant.ContactController.VIEW_LIST_CONTACT_PAGE;
     }
 
 }

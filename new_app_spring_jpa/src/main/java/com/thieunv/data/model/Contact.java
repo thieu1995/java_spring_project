@@ -1,7 +1,9 @@
 package com.thieunv.data.model;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -15,45 +17,43 @@ import java.util.Date;
 @Table(name = "contact")
 public class Contact {
     @Id
-    @GeneratedValue
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="contactId")
+    private int contactId;
 
     @Email
-    @Column(name="email")
     @NotEmpty
+    @Column(name="email",nullable = false, unique = true)
     private String email;
+
     @NotNull
+    @Column(name="fullName",nullable = false)
     private String fullName;
+
     @NotNull
+    @Column(name="phoneNumber",nullable = false)
     private String phoneNumber;
-    private Timestamp updatedAt;
-    private Timestamp createdAt;
 
-    public Contact() {
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "updated_at")
+    private Date updatedAt;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    public Contact() {}
+
+    public int getContactId() {
+        return contactId;
     }
 
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setContactId(int contactId) {
+        this.contactId = contactId;
     }
 
     public String getEmail() {
@@ -80,5 +80,19 @@ public class Contact {
         this.phoneNumber = phoneNumber;
     }
 
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
 
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
 }

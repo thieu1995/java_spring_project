@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<body>
+<nav th:replace="layout :: header"></nav>
+
+<div class="container main-content form">
+    <div class="row">
+
+        <form action="#" th:action="@{/contact/save}" th:object="${contact}" method="POST" novalidate="novalidate">
+            <input type="hidden" th:field="*{contactId}"/>
+
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" class="form-control" th:field="*{fullName}" th:errorclass="field-error"/>
+                <em th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></em>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" th:field="*{email}" th:errorclass="field-error"/>
+                <em th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></em>
+            </div>
+
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="text" class="form-control" th:field="*{phoneNumber}" th:errorclass="field-error"/>
+                <em th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></em>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+
+    </div>
+</div><!-- /.container -->
+
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

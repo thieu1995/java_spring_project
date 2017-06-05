@@ -1,6 +1,10 @@
 package com.thieunv.data.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by thieunv on 05/06/2017.
@@ -10,26 +14,44 @@ import javax.persistence.*;
 public class Bookmark {
 
     @Id
-    @GeneratedValue
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="bookmark_id")
+    private int bookmarkId;
 
+    @Column(name="uri")
     private String uri;
+
+    @Column(name="description")
     private String description;
+
+    @Column(name="category")
     private String category;
 
     @ManyToOne
-    private UserProfile userProfile;
+    @JoinColumn(name="userBookmark")
+    private UserBookmark userBookmark;
 
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "birthday")
+    private Date updatedAt;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "created_at")
+    private Date createdAt;
 
     public Bookmark() {}    // jpa only
 
-
-    public Long getId() {
-        return id;
+    public int getBookmarkId() {
+        return bookmarkId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setBookmarkId(int bookmarkId) {
+        this.bookmarkId = bookmarkId;
     }
 
     public String getUri() {
@@ -47,6 +69,7 @@ public class Bookmark {
     public void setDescription(String description) {
         this.description = description;
     }
+
     public String getCategory() {
         return category;
     }
@@ -54,11 +77,28 @@ public class Bookmark {
     public void setCategory(String category) {
         this.category = category;
     }
-    public UserProfile getUserProfile() {
-        return userProfile;
+
+    public UserBookmark getUserBookmark() {
+        return userBookmark;
     }
 
-    public void setUserProfile(UserProfile userProfile) {
-        this.userProfile = userProfile;
+    public void setUserBookmark(UserBookmark userBookmark) {
+        this.userBookmark = userBookmark;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }
