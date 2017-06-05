@@ -1,3 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-size: 14px;
+    color: #333;
+    background-color: rgba(222, 217, 217, 0.6);
+}
+.main_content {
+    margin: 100px auto;
+}
 h1{
     color:#0000FF;
 }
@@ -5,3 +18,4 @@ h1{
 h2{
     color:#FF0000;
 }
+
