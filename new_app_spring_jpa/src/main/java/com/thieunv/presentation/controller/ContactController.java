@@ -32,12 +32,15 @@ public class ContactController {
         this.contactService = contactService;
     }
 
-
     @RequestMapping(value="/", method = RequestMethod.GET)
+    public String redirectToContactListPage(Model model, Locale locale) {
+        return Constant.ContactController.REDIRECT_TO_CONTACT_LIST;
+    }
+
+    @RequestMapping(value="/all", method = RequestMethod.GET)
     public String viewListContactPage(Model model, Locale locale) {
-        model.addAttribute("title", messageSource.getMessage("index.title", null, locale));
-        model.addAttribute("greeting", messageSource.getMessage("index.greeting", null, locale));
-        return Constant.ContactController.VIEW_LIST_CONTACT_PAGE;
+        model.addAttribute(Constant.ContactController.MODEL_CONTACST_NAME, contactService.getContacts());
+        return Constant.ContactController.VIEW_CONTACT_LIST_PAGE;
     }
 
     @RequestMapping(value="/add", method = RequestMethod.GET)
@@ -47,12 +50,12 @@ public class ContactController {
     }
 
     @RequestMapping(value="/add/save", method = RequestMethod.POST)
-    public String processFromCreateNewContact(@Valid @ModelAttribute ContactDTO contactDTO, BindingResult result, Locale locale) {
+    public String processFromCreateNewContact(@Valid @ModelAttribute("contact") Contact contact, BindingResult result, Locale locale) {
         if(result.hasErrors()) {
-            return Constant.ContactController.VIEW_CONTACT_FORM_PAGE;
+            return Constant.ContactController.REDIRECT_TO_CONTACT_FORM;
         }
-        this.contactService.save(contactDTO.transferToContact());
-        return Constant.ContactController.VIEW_LIST_CONTACT_PAGE;
+        this.contactService.save(contact);
+        return Constant.ContactController.REDIRECT_TO_CONTACT_LIST;
     }
 
 }

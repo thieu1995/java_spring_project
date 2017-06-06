@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by thieunv on 05/06/2017.
  */
@@ -24,5 +26,11 @@ public class ContactServiceImpl implements ContactService {
     @Transactional  // Tell spring this is Transaction to it auto config error if happen
     public Contact save(Contact contact) {
         return this.contactRepository.save(contact);
+    }
+
+    @Override
+    public List<Contact> getContacts() {
+        this.contactRepository.find();
+        return null;
     }
 }

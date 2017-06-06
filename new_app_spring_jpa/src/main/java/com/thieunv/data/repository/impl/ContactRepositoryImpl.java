@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.List;
 
 /**
  * Created by thieunv on 05/06/2017.
@@ -23,5 +25,13 @@ public class ContactRepositoryImpl implements ContactRepository {
         entityManager.persist(contact);
         entityManager.flush();      // It's not saved to real database util we say it flush.
         return contact;
+    }
+
+    @Override
+    public List<Contact> find() {
+        Query query = entityManager.createQuery("SELECT e FROM Contact e");
+        List<Contact> resultList = (List<Contact>) query.getResultList();
+        entityManager.flush();
+        return resultList;
     }
 }

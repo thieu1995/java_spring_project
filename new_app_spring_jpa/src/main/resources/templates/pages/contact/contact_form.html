@@ -7,7 +7,7 @@
 <div class="container main_content form">
     <div class="row">
 
-        <form action="#" th:action="@{/contact/save}" th:object="${contact}" method="POST" novalidate="novalidate">
+        <form action="#" th:action="@{/contact/add/save}" th:object="${contact}" method="POST" novalidate="novalidate">
             <input type="hidden" th:field="*{contactId}"/>
 
             <div class="form-group">

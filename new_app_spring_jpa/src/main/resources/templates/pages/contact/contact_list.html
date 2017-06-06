@@ -24,7 +24,8 @@
         </form>
     </div>
 
-    <hr>
+
+    <hr />
 
     <th:block th:if="${#lists.isEmpty(contacts)}">
         <div class="row">
@@ -48,15 +49,15 @@
                 <tbody>
                 <tr th:each="contact,iterStat : ${contacts}">
                     <td th:text="${iterStat.count}"></td>
-                    <td th:text="${contact.name}"></td>
+                    <td th:text="${contact.fullName}"></td>
                     <td th:text="${contact.email}"></td>
-                    <td th:text="${contact.phone}"></td>
+                    <td th:text="${contact.phoneNumber}"></td>
                     <td>
-                        <a th:href="@{/contact/{id}/edit(id=${contact.id})}"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a th:href="@{/contact/{id}/edit(id=${contact.contactId})}"><span class="glyphicon glyphicon-pencil"></span></a>
                         <!-- http://www.thymeleaf.org/doc/articles/standardurlsyntax.html -->
                     </td>
                     <td>
-                        <a th:href="@{/contact/{id}/delete(id=${contact.id})}"><span class="glyphicon glyphicon-trash"></span></a>
+                        <a th:href="@{/contact/{id}/delete(id=${contact.contactId})}"><span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
                 </tbody>
