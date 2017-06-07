@@ -14,24 +14,27 @@ import java.util.List;
  * Created by thieunv on 05/06/2017.
  */
 @Repository
-public class ContactRepositoryImpl implements ContactRepository {
+public class ContactRepositoryImpl {
 
     @PersistenceContext
     private EntityManager entityManager;
 
 
-    @Override
     public Contact save(Contact contact) {
         entityManager.persist(contact);
         entityManager.flush();      // It's not saved to real database util we say it flush.
         return contact;
     }
 
-    @Override
+
     public List<Contact> find() {
         Query query = entityManager.createQuery("SELECT e FROM Contact e");
         List<Contact> resultList = (List<Contact>) query.getResultList();
         entityManager.flush();
         return resultList;
+    }
+
+    public Contact findContactByEmail(String email) {
+        return null;
     }
 }

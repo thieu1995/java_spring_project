@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="layout :: head"></head>
 
 <link th:href="@{/css/contact/contact_form.css}" rel="stylesheet"/>
@@ -56,17 +58,17 @@
         $("form[name='registration']").validate({
             rules: {
                 email: {
-                    required: true
-                    /*remote: {
-                        url: rootContext + 'rest/user/check_user_existed',
+                    required: true,
+                    remote: {
+                        url: 'localhost:8080/rest/contact/check_email_existed',
                         type: "get",
                         data:{
-                            userName: function () {
-                                return $('#userName').val();
+                            email: function () {
+                                return $('#email').val();
                             }
                         }
 
-                    }*/
+                    }
                 },
                 fullName: {
                     required: true
@@ -76,10 +78,10 @@
                     digits: true
                 }
             },
-            /* remote: [[#{error.contact.email_already_existed}]]*/
             messages: {
                 email: {
-                    required: [[#{error.contact.email_required}]]
+                    required: [[#{error.contact.email_required}]],
+                    remote: [[#{error.contact.email_already_existed}]]
                 },
                 fullName: {
                     required: [[#{error.contact.fullName_required}]]

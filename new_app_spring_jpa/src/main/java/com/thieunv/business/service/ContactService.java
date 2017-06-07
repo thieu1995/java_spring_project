@@ -1,5 +1,6 @@
 package com.thieunv.business.service;
 
+import com.thieunv.business.service.entity.ServiceResult;
 import com.thieunv.data.model.Contact;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface ContactService {
     Contact save(Contact contact);
 
     List<Contact> getContacts();
+
+    ServiceResult<Contact> getContactByEmail(String email);
 }
