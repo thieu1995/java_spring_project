@@ -16,5 +16,6 @@ public interface ContactService {
     ServiceResult<Contact> getContactByEmail(String email);
 
     ServiceResult<Contact> findOneById(int id);
-    
+
+    void deleteContact(Contact contact);
 }

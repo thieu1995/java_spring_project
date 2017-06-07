@@ -75,6 +75,21 @@ public class ContactController {
         return Constant.Common.VIEW_404_PAGE;
     }
 
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String processDeleteContact(@PathVariable int id, Model model, RedirectAttributes redirect, Locale locale) {
+        ServiceResult<Contact> serviceResult = contactService.findOneById(id);
+        if(serviceResult.isSuccessful()) {
+            Contact contact = serviceResult.getData();
+            if(contact == null) {
+                redirect.addFlashAttribute(MessageConstant.Error.MESSAGE_ERROR, messageSource.getMessage(MessageConstant.Error.MESSAGE_DELETE_CONTACT, null, locale));
+                return Constant.ContactController.REDIRECT_TO_CONTACT_LIST;
+            }
+            contactService.deleteContact(contact);
+            redirect.addFlashAttribute(MessageConstant.Success.MESSAGE_SUCCESS, messageSource.getMessage(MessageConstant.Success.MESSAGE_DELETE_CONTACT, null, locale));
+            return Constant.ContactController.REDIRECT_TO_CONTACT_LIST;
+        }
+        return Constant.Common.VIEW_404_PAGE;
+    }
 
     @RequestMapping(value = "/**", method = RequestMethod.GET)
     public String view404Page(Locale locale) {

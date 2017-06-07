@@ -57,6 +57,11 @@ public class ContactServiceImpl implements ContactService {
         return setContactData(contact);
     }
 
+    @Override
+    public void deleteContact(Contact contact) {
+        contactRepository.delete(contact);
+    }
+
     private ServiceResult<Contact> setContactData(Contact contact) {
         ServiceResult<Contact> serviceResult = new ServiceResult<Contact>();
         serviceResult.setData(contact);

@@ -5,11 +5,11 @@
 function autoRemoveMessages() {
     window.setTimeout(function () {
         $('.alert_spring_normal').remove();
-    },3000)
+    },5000)
 }
 
 function autoHideMessages() {
     window.setTimeout(function () {
         $('.alert_restful').hide();
-    },3000)
+    },5000)
 }
