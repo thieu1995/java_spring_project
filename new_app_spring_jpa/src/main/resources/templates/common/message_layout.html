@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="error_block">
+    <script th:src="@{/js/message.js}"/>
+    <div th:if="${error}" class="row alert alert-danger alert-dismissible alert_spring_normal" id="global_error_1">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span>
+        </button>
+        <div th:if="${error}" th:text="${error}"></div>
+        <script>autoRemoveMessages()</script>
+    </div>
+
+    <div th:if="${errors}" class="row alert alert-danger alert-dismissible alert_spring_normal" id="global_error_2">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span>
+        </button>
+        <div th:each="error: ${errors}" th:text="${error}"></div>
+        <script>autoRemoveMessages()</script>
+    </div>
+
+    <div class="row alert alert-danger alert-dismissible alert_restful" id="global_error_3" style="display: none">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span>
+        </button>
+        <div id="error_block"></div>
+    </div>
+</div>
+
+<div th:fragment="success_block">
+    <script th:src="@{/js/message.js}"/>
+    <div th:if="${success}" class="row alert alert-danger alert-dismissible alert_spring_normal" id="global_success_1">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span>
+        </button>
+        <div th:if="${success}" th:text="${success}"></div>
+        <script>autoRemoveMessages()</script>
+    </div>
+
+    <div class="row alert alert-danger alert-dismissible alert_restful" id="global_success_3" style="display: none">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span>
+        </button>
+        <div id="success_block"></div>
+    </div>
+</div>
+
+</body>
+</html>

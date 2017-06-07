@@ -1,29 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="layout :: head"></head>
 
 <link th:href="@{/css/contact/contact_list.css}" rel="stylesheet"/>
-<title>List Contacts</title>
+<title th:text="#{label.contact_list.titlePage}"></title>
+<script th:src="@{/js/libs/jquery.validate.min.js}"></script>
+
 <body>
 <nav th:replace="layout :: header"></nav>
 
-<div class="container main_content list">
 
-    <div th:if="${success}" class="row alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <span th:text="${success}"></span>
-    </div>
+<div class="container main_content">
 
+    <div th:replace="common/message_layout :: success_block"></div>
+    <div th:replace="common/message_layout :: error_block"></div>
 
     <div class="row">
-        <a th:href="@{/contact/create}" class="btn btn-success pull-left">
-            <span class="glyphicon glyphicon-plus"></span> Add new contact
+        <a th:href="@{/contact/add}" class="btn btn-success pull-left">
+            <span class="glyphicon glyphicon-plus"></span> <span th:text="#{label.contact_list.add_new}"></span>
         </a>
-        <form class="form-inline pull-right" action="#" th:action="@{/contact/search}" method="GET">
+        <form class="form-inline pull-right" th:action="@{/contact/search}" method="GET">
             <div class="form-group">
-                <input type="text" class="form-control" name="q" placeholder="Type contact name..." />
+                <input type="text" class="form-control" name="q" th:placeholder="#{label.contact_list.placeholder_contact}"/>
             </div>
-            <button type="submit" class="btn btn-primary">Search</button>
+            <button type="submit" class="btn btn-primary" th:text="#{label.contact_list.buttonSearch}"></button>
         </form>
     </div>
 
@@ -32,7 +34,7 @@
 
     <th:block th:if="${#lists.isEmpty(contacts)}">
         <div class="row">
-            <h3>No contacts</h3>
+            <h3 th:text="#{label.contact_list.no_contact}">No contacts</h3>
         </div>
     </th:block>
 
@@ -42,11 +44,11 @@
                 <thead>
                 <tr>
                     <th>###</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th th:text="#{label.contact_list.table.fullName}">Name</th>
+                    <th th:text="#{label.contact_list.table.email}">Email</th>
+                    <th th:text="#{label.contact_list.table.phoneNumber}">Phone</th>
+                    <th th:text="#{label.contact_list.table.edit}">Edit</th>
+                    <th th:text="#{label.contact_list.table.delete}">Delete</th>
                 </tr>
                 </thead>
                 <tbody>
