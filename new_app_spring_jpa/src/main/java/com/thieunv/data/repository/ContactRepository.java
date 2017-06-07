@@ -15,4 +15,6 @@ public interface ContactRepository extends CrudRepository<Contact, Serializable>
     List<Contact> findAll();
 
     Contact findContactByEmail(String email);
+
+    Contact findByContactId(int id);
 }

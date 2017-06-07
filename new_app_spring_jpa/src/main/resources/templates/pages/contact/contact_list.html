@@ -58,11 +58,11 @@
                     <td th:text="${contact.email}"></td>
                     <td th:text="${contact.phoneNumber}"></td>
                     <td>
-                        <a th:href="@{/contact/{id}/edit(id=${contact.contactId})}"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a th:href="@{/contact/edit/{id}(id=${contact.contactId})}"><span class="glyphicon glyphicon-pencil"></span></a>
                         <!-- http://www.thymeleaf.org/doc/articles/standardurlsyntax.html -->
                     </td>
                     <td>
-                        <a th:href="@{/contact/{id}/delete(id=${contact.contactId})}"><span class="glyphicon glyphicon-trash"></span></a>
+                        <a th:href="@{/contact/delete/{id}(id=${contact.contactId})}"><span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
                 </tbody>

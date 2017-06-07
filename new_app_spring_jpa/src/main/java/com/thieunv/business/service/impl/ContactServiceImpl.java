@@ -48,7 +48,16 @@ public class ContactServiceImpl implements ContactService {
                     messageSource.getMessage(MessageConstant.Error.MESSAGE_EMAIL_NONE, null, locale));
         }
         Contact contact = contactRepository.findContactByEmail(email);
+        return setContactData(contact);
+    }
 
+    @Override
+    public ServiceResult<Contact> findOneById(int id) {
+        Contact contact = contactRepository.findByContactId(id);
+        return setContactData(contact);
+    }
+
+    private ServiceResult<Contact> setContactData(Contact contact) {
         ServiceResult<Contact> serviceResult = new ServiceResult<Contact>();
         serviceResult.setData(contact);
         serviceResult.setSuccessful(true);
