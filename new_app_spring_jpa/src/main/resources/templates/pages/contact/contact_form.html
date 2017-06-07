@@ -1,39 +1,100 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: head"></head>
+
+<link th:href="@{/css/contact/contact_form.css}" rel="stylesheet"/>
+<title th:text="#{label.contact.titlePage}">Create new Contact page</title>
+<script th:src="@{/js/libs/jquery.validate.min.js}"/>
+
 <body>
 <nav th:replace="layout :: header"></nav>
 
 <div class="container main_content form">
     <div class="row">
 
-        <form action="#" th:action="@{/contact/add/save}" th:object="${contact}" method="POST" novalidate="novalidate">
-            <input type="hidden" th:field="*{contactId}"/>
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+            <form action="#" th:action="@{/contact/add/save}" th:object="${contact}" method="POST" name="registration">
+                <input type="hidden" th:field="*{contactId}"/>
 
-            <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" class="form-control" th:field="*{fullName}" th:errorclass="field-error"/>
-                <em th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></em>
-            </div>
+                <div class="form-group">
+                    <label th:text="#{label.contact.fullName}">Full Name</label>
+                    <input type="text" class="form-control" th:field="*{fullName}"
+                           th:errorclass="field-error"
+                            th:placeholder="#{label.contact.placeholder_fullName}"/>
+                    <em th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></em>
+                </div>
 
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" class="form-control" th:field="*{email}" th:errorclass="field-error"/>
-                <em th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></em>
-            </div>
+                <div class="form-group">
+                    <label th:text="#{label.contact.email}">Email</label>
+                    <input type="email" class="form-control" th:field="*{email}"
+                           th:errorclass="field-error"
+                           th:placeholder="#{label.contact.placeholder_email}"/>
+                    <em th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></em>
+                </div>
 
-            <div class="form-group">
-                <label>Phone</label>
-                <input type="text" class="form-control" th:field="*{phoneNumber}" th:errorclass="field-error"/>
-                <em th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></em>
-            </div>
+                <div class="form-group">
+                    <label th:text="#{label.contact.phoneNumber}">Phone number</label>
+                    <input type="number" class="form-control" th:field="*{phoneNumber}"
+                           th:errorclass="field-error"
+                           th:placeholder="#{label.contact.placeholder_phoneNumber}"/>
+                    <em th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></em>
+                </div>
 
-            <button type="submit" class="btn btn-primary">Save</button>
-        </form>
+                <button type="submit" class="btn btn-primary" th:text="#{label.contact.buttonSave}">Save</button>
+            </form>
+        </div>
 
     </div>
 </div><!-- /.container -->
 
 <footer th:replace="layout :: footer"></footer>
+
+<script type="text/javascript" th:inline="javascript">
+
+    // Document: https://jqueryvalidation.org/documentation/
+    $(function () {
+        $("form[name='registration']").validate({
+            rules: {
+                email: {
+                    required: true
+                    /*remote: {
+                        url: rootContext + 'rest/user/check_user_existed',
+                        type: "get",
+                        data:{
+                            userName: function () {
+                                return $('#userName').val();
+                            }
+                        }
+
+                    }*/
+                },
+                fullName: {
+                    required: true
+                },
+                phoneNumber: {
+                    required: true,
+                    digits: true
+                }
+            },
+            /* remote: [[#{error.contact.email_already_existed}]]*/
+            messages: {
+                email: {
+                    required: [[#{error.contact.email_required}]]
+                },
+                fullName: {
+                    required: [[#{error.contact.fullName_required}]]
+                },
+                phoneNumber: {
+                    required: [[#{error.contact.phoneNumber_required}]],
+                    digits: [[#{error.contact.phoneNumber_only_digits}]]
+                }
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
