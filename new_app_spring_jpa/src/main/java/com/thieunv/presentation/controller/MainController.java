@@ -1,5 +1,6 @@
 package com.thieunv.presentation.controller;
 
+import com.thieunv.helper.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -31,3 +32,5 @@ public class MainController {
         return VIEW_INDEX_PAGE;
     }
 }
+
+

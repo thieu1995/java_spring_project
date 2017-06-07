@@ -44,6 +44,13 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
                 .setCachePeriod(3600)
                 .resourceChain(true)
                 .addResolver(new PathResourceResolver());
+
+        registry
+                .addResourceHandler("/static/**")
+                .addResourceLocations("/static/")
+                .setCachePeriod(3600)
+                .resourceChain(true)
+                .addResolver(new PathResourceResolver());
     }
 
     @Bean

@@ -34,7 +34,7 @@ public class ContactController {
         this.contactService = contactService;
     }
 
-    @RequestMapping(value="/", method = RequestMethod.GET)
+    @RequestMapping(value={ "", "/", " "}, method = RequestMethod.GET)
     public String redirectToContactListPage(Model model, Locale locale) {
         return Constant.ContactController.REDIRECT_TO_CONTACT_LIST;
     }
