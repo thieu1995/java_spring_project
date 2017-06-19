@@ -57,3 +57,62 @@ https://stackoverflow.com/questions/20808290/spring-jpa-hibernate-no-qualifying-
 
 
 https://app.pluralsight.com/player?course=spring-jpa-hibernate&author=bryan-hansen&name=springjpa-m7-jpaannotation&clip=0&mode=live
+
+
+## Create Database
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `active` int(11) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+
+===
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `active` int(11) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+
+===
+
+
+DROP TABLE IF EXISTS `user_role`;
+CREATE TABLE `user_role` (
+  `user_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+====
+
+
+mysql> INSERT INTO `role` VALUES (1,'SUBSCRIBER');
+
+mysql> INSERT INTO `role` VALUES (2,'MEMBER');
+
+mysql> INSERT INTO `role` VALUES (3,'CONTRIBUTOR');
+
+mysql> INSERT INTO `role` VALUES (4,'AUTHOR');
+
+mysql> INSERT INTO `role` VALUES (5,'EDITOR');
+
+mysql> INSERT INTO `role` VALUES (6,'ADMIN');
+
+mysql> INSERT INTO `role` VALUES (7,'SUPER_ADMIN');
+
+
+https://medium.com/@gustavo.ponce.ch/spring-boot-spring-mvc-spring-security-mysql-a5d8545d837d

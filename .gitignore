@@ -38,3 +38,15 @@ new_app_spring_jpa/.mvn/
 new_app_spring_jpa/target/
 new_app_spring_jpa/.gitignore
 
+new_app_spring_jpa/src/test/
+new_app_spring_jpa/src/main/resources/static/test/
+new_app_spring_jpa/src/main/resources/templates/test2/
+new_app_spring_jpa/src/main/resources/templates/testing/
+new_app_spring_jpa/src/main/resources/templates/testing/css/test.css
+
+
+
+
+
+
+

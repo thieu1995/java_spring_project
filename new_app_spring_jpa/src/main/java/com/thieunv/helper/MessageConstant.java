@@ -13,6 +13,11 @@ public class MessageConstant {
 
         public static final String MESSAGE_DELETE_CONTACT = "error.contact.delete";
         public static final String MESSAGE_SAVE_CONTACT = "error.contact.save";
+
+
+        public static final String MESSAGE_SIGNUP_FAILED = "error.signup.failed";
+        public static final String MESSAGE_SIGNIN_FAILED = "error.signin.failed";
+
     }
 
     public class Success {
@@ -20,5 +25,8 @@ public class MessageConstant {
 
         public static final String MESSAGE_DELETE_CONTACT = "success.contact.delete";
         public static final String MESSAGE_SAVE_CONTACT = "success.contact.save";
+
+        public static final String MESSAGE_SIGNUP_FAILED = "success.signup";
     }
+
 }
