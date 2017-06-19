@@ -2,7 +2,6 @@ package com.thieunv.presentation.controller;
 
 import com.thieunv.business.service.UserSignInService;
 import com.thieunv.data.dto.UserRegistrationDTO;
-import com.thieunv.data.model.UserSignIn;
 import com.thieunv.helper.Constant;
 import com.thieunv.helper.MessageConstant;
 import org.springframework.beans.factory.annotation.Autowired;
