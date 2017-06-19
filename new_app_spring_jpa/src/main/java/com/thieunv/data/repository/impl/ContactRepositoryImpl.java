@@ -34,7 +34,7 @@ public class ContactRepositoryImpl {
         return resultList;
     }
 
-    public Contact findContactByEmail(String email) {
+    public Contact findByEmail(String email) {
         return null;
     }
 }
