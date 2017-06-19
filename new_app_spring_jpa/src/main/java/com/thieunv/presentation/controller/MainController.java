@@ -81,19 +81,6 @@ public class MainController {
                 messageSource.getMessage(MessageConstant.Success.MESSAGE_SIGNUP_FAILED,null, locale));
         return Constant.MainController.REDIRECT_SIGN_IN_PAGE;
     }
-
-
-
-   /* @RequestMapping(value="/admin/home", method = RequestMethod.GET)
-    public ModelAndView home(){
-        ModelAndView modelAndView = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        UserSignIn userSignIn = userSignInService.findUserByEmail(auth.getName());
-        modelAndView.addObject("userName", "Welcome " + userSignIn.getUserName() + " (" + userSignIn.getEmail() + ")");
-        modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
-        modelAndView.setViewName(Constant.MainController.VIEW_DASHBOARD_PAGE);
-        return modelAndView;
-    }*/
 }
 
 
