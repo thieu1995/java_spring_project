@@ -8,8 +8,15 @@ package com.thieunv.helper;
 /* https://thachpham.com/wordpress/wordpress-tutorials/vai-tro-nhom-user.html */
 public class Constant {
 
+    public static class CommonVar {
+        public static final Short USER_GENDER_MAN = 0;
+        public static final Short USER_GENDER_WOMAN = 1;
+    }
+
     public class Common {
         public static final String VIEW_404_PAGE = "common/404";
+
+
     }
 
     public class User {
@@ -18,6 +25,7 @@ public class Constant {
         public static final short USER_BLOCKED = 2;
         public static final short USER_DELETED = 3;
     }
+
 
     public class Role {
         public static final String ROLE_SUPER_ADMIN = "SUPER_AMIN";

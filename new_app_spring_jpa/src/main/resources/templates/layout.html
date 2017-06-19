@@ -44,13 +44,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><span th:text="#{layout.avatar_text}"></span></a>
+            <a class="navbar-brand" href="#"><span th:text="#{layout.nav.avatar_text}"></span></a>
         </div>
 
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <span th:text="#{layout.languge}"></span>
+                    <span th:text="#{layout.nav.languge}"></span>
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -63,8 +63,8 @@
 
 
         <ul sec:authorize="!isAuthenticated()" class="nav navbar-nav navbar-right">
-            <li><a th:href="@{/login}"> <span th:text="#{layout.signin}"></span> </a></li>
-            <li><a th:href="@{/signup}"> <span th:text="#{layout.signup}"></span> </a></li>
+            <li><a th:href="@{/login}"> <span th:text="#{layout.auth.signin_text}"></span> </a></li>
+            <li><a th:href="@{/signup}"> <span th:text="#{layout.auth.signup_text}"></span> </a></li>
         </ul>
 
 
@@ -75,22 +75,22 @@
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a th:href="@{/user/profile}"> <span th:text="#{layout.profiles}"></span> </a></li>
-                    <li><a th:href="@{/templates/pages/all}"> <span th:text="#{layout.contacts}"></span> </a></li>
-                    <li><a th:href="@{/bookmark/all}"> <span th:text="#{layout.bookmarks}"></span> </a></li>
+                    <li><a th:href="@{/user/profile}"> <span th:text="#{layout.user.profiles}"></span> </a></li>
+                    <li><a th:href="@{/templates/pages/all}"> <span th:text="#{layout.user.contacts}"></span> </a></li>
+                    <li><a th:href="@{/bookmark/all}"> <span th:text="#{layout.user.bookmarks}"></span> </a></li>
 
 
                     <li sec:authorize="hasRole('ROLE_ADMIN')" role="separator" class="divider"></li>
-                    <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin/user/all}"> <span th:text="#{layout.users}"></span> </a></li>
+                    <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin/user/all}"> <span th:text="#{layout.user.users}"></span> </a></li>
                     <li sec:authorize="hasRole('ROLE_ADMIN')" role="separator" class="divider"></li>
 
 
-                    <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/contactapp/api/contacts}">Contacts Api</a></li>
-                    <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/contactapp/api/quotes}">Quotes Api</a></li>
-                    <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/contactapp/api/bookmarks}">Bookmarks Api</a></li>
+                    <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/contactapp/api/contacts}" th:text="#{layout.api.contacts}">Contacts Api</a></li>
+                    <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/contactapp/api/quotes}" th:text="#{layout.api.quotes}">Quotes Api</a></li>
+                    <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/contactapp/api/bookmarks}" th:text="#{layout.api.bookmarks}">Bookmarks Api</a></li>
 
                     <li role="separator" class="divider"></li>
-                    <li><a th:href="@{/logout}"> <span th:text="#{layout.logout}"></span> </a></li>
+                    <li><a th:href="@{/logout}"> <span th:text="#{layout.user.logout}"></span> </a></li>
                 </ul>
             </li>
         </ul>

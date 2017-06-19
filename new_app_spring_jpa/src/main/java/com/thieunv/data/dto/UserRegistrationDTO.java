@@ -1,9 +1,12 @@
 package com.thieunv.data.dto;
 
+import com.thieunv.helper.Constant;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by thieunv on 05/06/2017.
@@ -30,6 +33,22 @@ public class UserRegistrationDTO {
 
     @NotNull
     private short gender;
+
+    private Map<Short, String> mapGender;
+    public Map<Short, String> getMapGender() {
+        return mapGender;
+    }
+    private void initGender() {
+        mapGender = new HashMap<Short, String>();
+        mapGender.put(Constant.CommonVar.USER_GENDER_MAN, "Man");
+        mapGender.put(Constant.CommonVar.USER_GENDER_WOMAN, "Woman");
+        this.setGender(Constant.CommonVar.USER_GENDER_MAN);
+    }
+
+    public UserRegistrationDTO() {
+        initGender();
+    }
+
 
     public String getFullName() {
         return fullName;

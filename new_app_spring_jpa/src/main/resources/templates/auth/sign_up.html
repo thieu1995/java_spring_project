@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Registration Form</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
-<form th:action="@{/}" method="get">
-    <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Login Page</button>
-</form>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="layout :: head"></head>
 
-<div class="container main_content">
+<link rel="stylesheet" type="text/css" th:href="@{/css/contact/contact_form.css}"/>
+<title th:text="#{label.signup.titlePage}"></title>
+<script type="text/javascript" th:src="@{/js/libs/jquery.validate.min.js}"></script>
+
+<body>
+<nav th:replace="layout :: header"></nav>
+
+<div class="container main_content form">
 
     <div class="row">
         <div class="col-lg-6 col-lg-offset-3">
@@ -22,78 +20,191 @@
         </div>
     </div>
 
+
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <form autocomplete="off" action="#" th:action="@{/registration/save}"
-                  th:object="${userRegistrationDTO}" method="post" class="form-horizontal"
-                  role="form">
-                <h2>Registration Form</h2>
+
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+
+            <form autocomplete="off" th:action="@{/registration/save}"
+                  th:object="${userRegistrationDTO}" method="post" class="form-horizontal" name="register_form">
+
+                <h3 class="form-signin-heading" th:text="#{label.signup.welcome}"> Registration Form </h3>
+                <br/>
+
                 <div class="form-group">
+                    <div class="col-sm-3">
+                        <strong th:text="#{label.signup.userName}">User Name: </strong>
+                    </div>
+
                     <div class="col-sm-9">
-                        <label th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"
+                        <label th:if="${#fields.hasErrors('userName')}"
+                               th:errors="*{userName}"
                                class="validation-message"></label>
-                        <input type="text" th:field="*{userName}" placeholder="Name"
+                        <input type="text" th:field="*{userName}"
+                               th:placeholder="#{label.signup.placeholder_userName}"
                                class="form-control" />
                     </div>
+
                 </div>
 
                 <div class="form-group">
+                    <div class="col-sm-3">
+                        <strong th:text="#{label.signup.email}">Email: </strong>
+                    </div>
                     <div class="col-sm-9">
-                        <input type="text" th:field="*{email}" placeholder="Email"
-                               class="form-control" /> <label
+                        <input type="text" th:field="*{email}"
+                               th:placeholder="#{label.signup.placeholder_email}"
+                               class="form-control" />
+                        <label
                             th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
                             class="validation-message"></label>
                     </div>
                 </div>
+
+
                 <div class="form-group">
+                    <div class="col-sm-3">
+                        <strong th:text="#{label.signup.password}">Password *: </strong>
+                    </div>
+
                     <div class="col-sm-9">
                         <input type="password" th:field="*{password}"
-                               placeholder="Password" class="form-control" /> <label
-                            th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                               th:placeholder="#{label.signup.placeholder_password}"
+                               class="form-control" />
+                        <label
+                            th:if="${#fields.hasErrors('password')}"
+                            th:errors="*{password}"
                             class="validation-message"></label>
                     </div>
                 </div>
 
                 <div class="form-group">
+                    <div class="col-sm-3">
+                        <strong th:text="#{label.signup.matchingPassword}">Matching Password *: </strong>
+                    </div>
                     <div class="col-sm-9">
-                        <input type="password" th:field="*{matchingPasword}"
-                               placeholder="Password" class="form-control" /> <label
-                            th:if="${#fields.hasErrors('matchingPasword')}" th:errors="*{matchingPasword}"
+                        <input type="password" th:field="*{matchingPassword}"
+                               th:placeholder="#{label.signup.placeholder_matchingPassword}"
+                               class="form-control" /> <label
+                            th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}"
                             class="validation-message"></label>
                     </div>
                 </div>
 
                 <div class="form-group">
+                    <div class="col-sm-3">
+                        <strong th:text="#{label.signup.fullName}">Full Name *: </strong>
+                    </div>
                     <div class="col-sm-9">
                         <label	th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"
                                   class="validation-message"></label>
                         <input type="text" th:field="*{fullName}"
-                               placeholder="Last Name" class="form-control" />
+                               th:placeholder="#{label.signup.placeholder_fullName}"
+                                class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        <strong th:text="#{label.signup.gender}">Gender *: </strong>
+                    </div>
+                    <div class="col-sm-9">
+                        <label	th:if="${#fields.hasErrors('gender')}"
+                                  th:errors="*{gender}"
+                                  class="validation-message">
+                        </label>
+                        <select th:field="*{gender}" class="form-control">
+                            <option th:each="gend : ${userRegistrationDTO.mapGender}"
+                                    th:value="${gend.key}" th:text="${gend.value}">...
+                            </option>
+                        </select>
+
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <label	th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"
-                                  class="validation-message"></label>
-                        <input type="text" th:field="*{gender}"
-                               placeholder="Last Name" class="form-control" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Register User</button>
+                        <button type="submit" class="btn btn-primary btn-block" th:text="#{label.signup.text.btn_signup}">Sign Up</button>
                     </div>
                 </div>
 
                 <span th:utext="${successMessage}"></span>
-
-
             </form>
+
+
+            <a th:href="@{/registration}" class="btn btn-warning" type="Submit" th:text="#{label.signin.buttonGoToSignUp}">Go To Registration Page</a>
+            <a th:href="@{/forgot-password}" class="btn btn-danger" type="Submit" th:text="#{label.signin.buttonForgotPassword}">Go To Registration Page</a>
         </div>
+
     </div>
-</div>
+</div><!-- /.container -->
+
+<footer th:replace="layout :: footer"></footer>
+
+<script type="text/javascript" th:inline="javascript">
+
+    // Document: https://jqueryvalidation.org/documentation/
+    $(function () {
+        jQuery.validator.addMethod("googleEmail", function(value, element) {
+            return this.optional( element ) || /[a-zA-Z0-9-\_\.\+\-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9-\.]+/.test( value );
+        });
+
+        $("form[name='register_form']").validate({
+            rules: {
+                userName: {
+                    required: true
+                },
+                email: {
+                    required: true,
+                    email: true,
+                    googleEmail: true
+                },
+                password: {
+                    required: true,
+                    minlength: 8
+                },
+                matchingPassword: {
+                    required: true,
+                    equalTo: "#password"
+                },
+                fullName: {
+                    required: true
+                },
+                gender: {
+                    required: true
+                }
+            },
+            messages: {
+                userName: {
+                    required: [[#{error.signup.required.userName}]]
+                },
+                email: {
+                    required: [[#{error.signup.required.email}]],
+                    email: [[#{error.signup.format.email}]],
+                    googleEmail: [[#{error.signup.format.email}]]
+                },
+                password: {
+                    required: [[#{error.signup.required.password}]],
+                    minlength: [[#{error.signup.password.more_than_eight}]]
+                },
+                matchingPassword: {
+                    required: [[#{error.signup.required.matchingPassword}]],
+                    equalTo: [[#{error.signup.password.not_equal}]]
+                },
+                fullName: {
+                    required: [[#{error.signup.required.fullName}]]
+                },
+                gender: {
+                    required: [[#{error.signup.required.gender}]]
+                }
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
+

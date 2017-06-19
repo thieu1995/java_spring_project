@@ -1,11 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="layout :: head"></head>
+
+<link th:href="@{/css/contact/contact_list.css}" rel="stylesheet"/>
+<title th:text="#{label.contact_list.titlePage}"></title>
+<script th:src="@{/js/libs/jquery.validate.min.js}"></script>
+
 <body>
+<nav th:replace="layout :: header"></nav>
 
 
+<div class="container main_content">
+
+    <div>Welcome to this website</div>
+
+
+</div>
+<!-- /.container -->
+
+<footer th:replace="layout :: footer"></footer>
 </body>
 </html>
