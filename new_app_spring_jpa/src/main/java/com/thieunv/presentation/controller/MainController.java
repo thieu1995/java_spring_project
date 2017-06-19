@@ -49,8 +49,6 @@ public class MainController {
     public String getLoginFailed(RedirectAttributes redirect, Locale locale, Model model) {
         redirect.addFlashAttribute(MessageConstant.Error.MESSAGE_ERROR,
                 messageSource.getMessage(MessageConstant.Error.MESSAGE_SIGNIN_FAILED,null, locale));
-        model.addAttribute(MessageConstant.Error.MESSAGE_ERROR,
-                messageSource.getMessage(MessageConstant.Error.MESSAGE_SIGNIN_FAILED,null, locale));
         return Constant.MainController.REDIRECT_SIGN_IN_PAGE;
     }
 

@@ -70,7 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .frameOptions().sameOrigin().and().authorizeRequests()
                 .antMatchers("/webjars/**", "/resources/**", "/css/**", "/js/**", "/img/**", "/images/**", "/static/**",
                         "/password-reminder/**", "/registration/**","/contact/**", "/signup",
-                        "/login", "/error","/rest/**","/debug/**").permitAll()
+                        "/login/**", "/error","/rest/**","/debug/**").permitAll()
                 .antMatchers("/admin/**").hasAuthority(Constant.Role.ROLE_SUBSCRIBER)
                 .anyRequest()
                 .authenticated().and().authorizeRequests().antMatchers("/api/**").authenticated()
