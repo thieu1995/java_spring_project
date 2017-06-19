@@ -116,3 +116,9 @@ mysql> INSERT INTO `role` VALUES (7,'SUPER_ADMIN');
 
 
 https://medium.com/@gustavo.ponce.ch/spring-boot-spring-mvc-spring-security-mysql-a5d8545d837d
+
+
+## Mysql note
+
+ALTER TABLE tbl_Country DROP COLUMN IsDeleted;
+

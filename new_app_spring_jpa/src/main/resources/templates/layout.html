@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <link href="../static/images/logo.png" th:href="@{/images/logo.png}"
-          rel="shortcut icon" />
+    <link href="../static/img/logo/logoWebsite.png" th:href="@{/img/logo/logoWebsite.png}" rel="shortcut icon" />
 
     <!-- Bootstrap -->
     <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" />
@@ -31,6 +30,7 @@
     <script th:src="@{/js/main.js}"></script>
 </head>
 <body>
+<sec:authentication var="user" property="principal" />
 
 <nav th:fragment="header" class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">

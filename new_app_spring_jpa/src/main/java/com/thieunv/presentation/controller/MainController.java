@@ -14,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -65,23 +64,21 @@ public class MainController {
         return Constant.MainController.REDIRECT_SIGN_IN_PAGE;
     }
 
-    @GetMapping("/registration")
+    @RequestMapping({"/registration", "/signup"})
     public String getRegistrationPage(Model model) {
         model.addAttribute("userRegistrationDTO", new UserRegistrationDTO());
         return Constant.MainController.VIEW_SIGN_UP_PAGE;
     }
 
-
-    @PostMapping("/registration/save")
-    public String saveUser(@Valid UserSignIn userSignIn, BindingResult result,
+    @RequestMapping(value = "/registration/save", method = RequestMethod.POST)
+    public String saveUser(@Valid UserRegistrationDTO userRegistrationDTO, BindingResult result,
                            RedirectAttributes redirect, Locale locale) {
         if (result.hasErrors()) {
             redirect.addFlashAttribute(MessageConstant.Error.MESSAGE_ERROR,
                     messageSource.getMessage(MessageConstant.Error.MESSAGE_SIGNUP_FAILED,null, locale));
             return Constant.MainController.REDIRECT_SIGN_UP_PAGE;
         }
-
-        userSignInService.saveUserSignIn(userSignIn);
+        userSignInService.saveUserSignIn(userRegistrationDTO.transferToUserSignIn());
         redirect.addFlashAttribute(MessageConstant.Success.MESSAGE_SUCCESS,
                 messageSource.getMessage(MessageConstant.Success.MESSAGE_SIGNUP_FAILED,null, locale));
         return Constant.MainController.REDIRECT_SIGN_IN_PAGE;
@@ -89,7 +86,7 @@ public class MainController {
 
 
 
-    @RequestMapping(value="/admin/home", method = RequestMethod.GET)
+   /* @RequestMapping(value="/admin/home", method = RequestMethod.GET)
     public ModelAndView home(){
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -98,7 +95,7 @@ public class MainController {
         modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
         modelAndView.setViewName(Constant.MainController.VIEW_DASHBOARD_PAGE);
         return modelAndView;
-    }
+    }*/
 }
 
 

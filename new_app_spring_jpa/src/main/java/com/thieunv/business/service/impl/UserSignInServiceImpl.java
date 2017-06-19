@@ -54,4 +54,5 @@ public class UserSignInServiceImpl implements UserSignInService {
         userSignIn.setRoles(new HashSet<Role>(Collections.singletonList(role)));
         return userSignInRepository.saveAndFlush(userSignIn);
     }
+
 }

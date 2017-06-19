@@ -1,5 +1,6 @@
 package com.thieunv.data.dto;
 
+import com.thieunv.data.model.UserSignIn;
 import com.thieunv.helper.Constant;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -96,5 +97,13 @@ public class UserRegistrationDTO {
 
     public void setGender(short gender) {
         this.gender = gender;
+    }
+
+    public UserSignIn transferToUserSignIn() {
+        UserSignIn userSignIn = new UserSignIn();
+        userSignIn.setEmail(this.getEmail());
+        userSignIn.setPassword(this.getPassword());
+        userSignIn.setUserName(this.getUserName());
+        return userSignIn;
     }
 }
