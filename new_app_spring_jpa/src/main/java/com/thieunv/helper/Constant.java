@@ -105,6 +105,18 @@ public class Constant {
         public static final String REDIRECT_TO_CONTACT_FORM  = "redirect:/contact/add";
     }
 
+    public class StoryController {
+        public static final String VIEW_STORY_LIST_PAGE = "pages/story/story_list";
+        public static final String VIEW_STORY_FORM_PAGE  = "pages/story/story_form";
+
+
+        public static final String MODEL_STORY_NAME  = "story";
+        public static final String MODEL_STORIES_NAME = "stories";
+
+        public static final String REDIRECT_TO_STORY_LIST  = "redirect:/story/all";
+        public static final String REDIRECT_TO_STORY_FORM  = "redirect:/story/add";
+    }
+
     public class MainController {
         public static final String VIEW_INDEX_PAGE = "index";
         public static final String VIEW_SIGN_IN_PAGE = "auth/sign_in";

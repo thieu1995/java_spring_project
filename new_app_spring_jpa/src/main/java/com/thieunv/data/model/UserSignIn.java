@@ -62,6 +62,11 @@ public class UserSignIn {
     private Set<Role> roles;
 
 
+    @OneToOne
+    @JoinColumn(name="story_id")
+    private Story story;
+
+
     public int getUserId() {
         return userId;
     }
@@ -132,5 +137,13 @@ public class UserSignIn {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Story getStory() {
+        return story;
+    }
+
+    public void setStory(Story story) {
+        this.story = story;
     }
 }

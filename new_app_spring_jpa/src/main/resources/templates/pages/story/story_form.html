@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout :: head"></head>
+
+<link th:href="@{/css/contact/contact_form.css}" rel="stylesheet"/>
+<title th:text="#{label.contact_form.titlePage}">Create new Contact page</title>
+<script th:src="@{/js/libs/jquery.validate.min.js}"/>
+
+<body>
+<nav th:replace="layout :: header"></nav>
+
+<div class="container main_content form">
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+            <form action="#" th:action="@{/contact/add/save}" th:object="${contact}" method="POST" name="registration">
+                <input type="hidden" th:field="*{storyId}"/>
+
+                <div class="form-group">
+                    <label th:text="#{label.contact_form.fullName}">Full Name</label>
+                    <input type="text" class="form-control" th:field="*{fullName}"
+                           th:errorclass="field-error"
+                            th:placeholder="#{label.contact_form.placeholder_fullName}"/>
+                    <em th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></em>
+                </div>
+
+                <div class="form-group">
+                    <label th:text="#{label.contact_form.email}">Email</label>
+                    <input type="email" class="form-control" th:field="*{email}"
+                           th:errorclass="field-error"
+                           th:placeholder="#{label.contact_form.placeholder_email}"/>
+                    <em th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></em>
+                </div>
+
+                <div class="form-group">
+                    <label th:text="#{label.contact_form.phoneNumber}">Phone number</label>
+                    <input type="text" class="form-control" th:field="*{phoneNumber}"
+                           th:errorclass="field-error"
+                           th:placeholder="#{label.contact_form.placeholder_phoneNumber}"/>
+                    <em th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></em>
+                </div>
+
+                <button type="submit" class="btn btn-primary" th:text="#{label.contact_form.buttonSave}">Save</button>
+            </form>
+        </div>
+
+    </div>
+</div><!-- /.container -->
+
+<footer th:replace="layout :: footer"></footer>
+
+<script type="text/javascript" th:inline="javascript">
+
+    // Document: https://jqueryvalidation.org/documentation/
+    // Su dung AI nhan dien nha` mang: https://github.com/datnq/Vietnamese-mobile-carrier
+    // https://stackoverflow.com/questions/6960596/example-of-a-regular-expression-in-jquery-for-phone-numbers
+
+    $(function () {
+        jQuery.validator.addMethod("googleEmail", function(value, element) {
+            return this.optional( element ) || /[a-zA-Z0-9-\_\.\+\-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9-\.]+/.test( value );
+        });
+
+        $("form[name='registration']").validate({
+            rules: {
+                email: {
+                    required: true,
+                    email: true,
+                    googleEmail: true,
+                    remote: {
+                        url: 'http://localhost:8080/rest/contact/check_email_existed',
+                        type: "get",
+                        data:{
+                            email: function () {
+                                return $('#email').val();
+                            }
+                        }
+
+                    }
+                },
+                fullName: {
+                    required: true
+                },
+                phoneNumber: {
+                    required: true,
+                    digits: true,
+                    minlength: 10,
+                    maxlength: 12
+                }
+            },
+            messages: {
+                email: {
+                    required: [[#{error.contact.email_required}]],
+                    email: [[#{error.contact.email_format}]],
+                    googleEmail: [[#{error.contact.email_format}]],
+                    remote: [[#{error.contact.email_already_existed}]]
+                },
+                fullName: {
+                    required: [[#{error.contact.fullName_required}]]
+                },
+                phoneNumber: {
+                    required: [[#{error.contact.phoneNumber_required}]],
+                    digits: [[#{error.contact.phoneNumber_only_digits}]],
+                    minlength: [[#{error.contact.phoneNumber_more_than_ten}]],
+                    maxlength: [[#{error.contact.phoneNumber_less_than_twelve}]]
+                }
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
