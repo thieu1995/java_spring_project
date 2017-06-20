@@ -12,12 +12,21 @@
 <nav th:replace="layout :: header"></nav>
 
 
-<div class="container main_content">
+<div class="main_content">
 
     <div th:replace="common/message_layout :: success_block"></div>
     <div th:replace="common/message_layout :: error_block"></div>
 
-    <div class="row">
+    <div class="story_header_intro_wrapper">
+        <div class="color-scheme--white">
+            <h1>Codecademy Stories</h1>
+            <p>Stories of people inspired by Codecademy to change their life through coding.</p>
+            <p><a href="/stories" class="color--accent">Read all our stories</a></p>
+        </div>
+    </div>
+
+
+    <div class="story_header_action_wrapper">
         <a th:href="@{/contact/add}" class="btn btn-success pull-left">
             <span class="glyphicon glyphicon-plus"></span> <span th:text="#{label.contact_list.add_new}"></span>
         </a>
@@ -29,46 +38,45 @@
         </form>
     </div>
 
+    <div class="story_body_wrapper">
+        <th:block th:if="${#lists.isEmpty(contacts)}">
+            <div class="row">
+                <h3 th:text="#{label.contact_list.no_contact}">No contacts</h3>
+            </div>
+        </th:block>
 
-    <hr />
-
-    <th:block th:if="${#lists.isEmpty(contacts)}">
-        <div class="row">
-            <h3 th:text="#{label.contact_list.no_contact}">No contacts</h3>
-        </div>
-    </th:block>
-
-    <th:block th:unless="${#lists.isEmpty(contacts)}">
-        <div class="row">
-            <table class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                    <th>###</th>
-                    <th th:text="#{label.contact_list.table.fullName}">Name</th>
-                    <th th:text="#{label.contact_list.table.email}">Email</th>
-                    <th th:text="#{label.contact_list.table.phoneNumber}">Phone</th>
-                    <th th:text="#{label.contact_list.table.edit}">Edit</th>
-                    <th th:text="#{label.contact_list.table.delete}">Delete</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="contact,iterStat : ${contacts}">
-                    <td th:text="${iterStat.count}"></td>
-                    <td th:text="${contact.fullName}"></td>
-                    <td th:text="${contact.email}"></td>
-                    <td th:text="${contact.phoneNumber}"></td>
-                    <td>
-                        <a th:href="@{/contact/edit/{id}(id=${contact.storyId})}"><span class="glyphicon glyphicon-pencil"></span></a>
-                        <!-- http://www.thymeleaf.org/doc/articles/standardurlsyntax.html -->
-                    </td>
-                    <td>
-                        <a th:href="@{/contact/delete/{id}(id=${contact.storyId})}"><span class="glyphicon glyphicon-trash"></span></a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </th:block>
+        <th:block th:unless="${#lists.isEmpty(contacts)}">
+            <div class="row">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>###</th>
+                        <th th:text="#{label.contact_list.table.fullName}">Name</th>
+                        <th th:text="#{label.contact_list.table.email}">Email</th>
+                        <th th:text="#{label.contact_list.table.phoneNumber}">Phone</th>
+                        <th th:text="#{label.contact_list.table.edit}">Edit</th>
+                        <th th:text="#{label.contact_list.table.delete}">Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="contact,iterStat : ${contacts}">
+                        <td th:text="${iterStat.count}"></td>
+                        <td th:text="${contact.fullName}"></td>
+                        <td th:text="${contact.email}"></td>
+                        <td th:text="${contact.phoneNumber}"></td>
+                        <td>
+                            <a th:href="@{/contact/edit/{id}(id=${contact.storyId})}"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <!-- http://www.thymeleaf.org/doc/articles/standardurlsyntax.html -->
+                        </td>
+                        <td>
+                            <a th:href="@{/contact/delete/{id}(id=${contact.storyId})}"><span class="glyphicon glyphicon-trash"></span></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </th:block>
+    </div>
 </div>
 <!-- /.container -->
 

@@ -44,6 +44,10 @@ public class Story {
     @Column(name = "created_at")
     private Date createdAt;
 
+    @OneToOne
+    @JoinColumn(name="category_id")
+    private StoryCategory storyCategory;
+
     public Story() {
     }
 
@@ -103,5 +107,13 @@ public class Story {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public StoryCategory getStoryCategory() {
+        return storyCategory;
+    }
+
+    public void setStoryCategory(StoryCategory storyCategory) {
+        this.storyCategory = storyCategory;
     }
 }

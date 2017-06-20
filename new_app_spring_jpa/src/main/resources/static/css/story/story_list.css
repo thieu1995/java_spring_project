@@ -1,0 +1,21 @@
+.main_content {
+    margin: 50px auto;
+}
+.story_header_intro_wrapper {
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+    background: #fff;
+}
+.story_header_action_wrapper {
+    width: 100%;
+    padding: 30px 100px;
+    background: lightblue;
+    overflow: auto;
+}
+.story_body_wrapper {
+    width: 100%;
+    padding: 30px 45px;
+    overflow: auto;
+    background: #ece9e9;
+}
