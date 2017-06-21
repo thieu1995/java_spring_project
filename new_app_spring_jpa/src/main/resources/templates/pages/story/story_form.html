@@ -4,8 +4,8 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout :: head"></head>
 
-<link th:href="@{/css/contact/contact_form.css}" rel="stylesheet"/>
-<title th:text="#{label.contact_form.titlePage}">Create new Contact page</title>
+<link th:href="@{/css/story/story_form.css}" rel="stylesheet"/>
+<title th:text="#{label.story_form.titlePage}">Create new Story page</title>
 <script th:src="@{/js/libs/jquery.validate.min.js}"/>
 
 <body>
@@ -14,38 +14,57 @@
 <div class="container main_content form">
     <div class="row">
 
-        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
-            <form action="#" th:action="@{/contact/add/save}" th:object="${contact}" method="POST" name="registration">
-                <input type="hidden" th:field="*{contactId}"/>
+        <div class="col-xs-12">
 
-                <div class="form-group">
-                    <label th:text="#{label.contact_form.fullName}">Full Name</label>
-                    <input type="text" class="form-control" th:field="*{fullName}"
-                           th:errorclass="field-error"
-                            th:placeholder="#{label.contact_form.placeholder_fullName}"/>
-                    <em th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></em>
+            <div class="panel panel-default">
+                <div class="panel-heading" th:text="#{label.story_form.text.heading}">Create a new Story</div>
+                <div class="panel-body">
+                    <form action="#" th:action="@{/contact/add/save}" th:object="${story}" method="POST" name="createNewStory">
+                        <input type="hidden" th:field="*{storyId}"/>
+
+                        <div class="form-group">
+                            <label th:text="#{label.story_form.text.statement}">Statement</label>
+                            <input type="text" class="form-control" th:field="*{statement}"
+                                   th:errorclass="field-error"
+                                   th:placeholder="#{label.story_form.placeholder.statement}"/>
+                            <em th:if="${#fields.hasErrors('statement')}" th:errors="*{statement}"></em>
+                        </div>
+
+                        <div class="col-xs-12">
+                            <div class="form-group col-xs-6">
+                                <label th:text="#{label.story_form.text.title}">Title</label>
+                                <input type="email" class="form-control" th:field="*{title}"
+                                       th:errorclass="field-error"
+                                       th:placeholder="#{label.story_form.placeholder}"/>
+                                <em th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></em>
+                            </div>
+
+                            <div class="form-group col-xs-6">
+                                label.story_form.text.category)_'
+                                <label th:text="#{label.contact_form.email}">Category</label>
+                                <input type="email" class="form-control" th:field="*{storyCategory}"
+                                       th:errorclass="field-error"
+                                       th:placeholder="#{label.contact_form.placeholder_email}"/>
+                                <em th:if="${#fields.hasErrors('storyCategory')}" th:errors="*{storyCategory}"></em>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label th:text="#{label.contact_form.email}">Content</label>
+                            <input type="email" class="form-control" th:field="*{content}"
+                                   th:errorclass="field-error"
+                                   th:placeholder="#{label.contact_form.placeholder_email}"/>
+                            <em th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></em>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary" th:text="#{label.contact_form.buttonSave}">Save</button>
+                    </form>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label th:text="#{label.contact_form.email}">Email</label>
-                    <input type="email" class="form-control" th:field="*{email}"
-                           th:errorclass="field-error"
-                           th:placeholder="#{label.contact_form.placeholder_email}"/>
-                    <em th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></em>
-                </div>
-
-                <div class="form-group">
-                    <label th:text="#{label.contact_form.phoneNumber}">Phone number</label>
-                    <input type="text" class="form-control" th:field="*{phoneNumber}"
-                           th:errorclass="field-error"
-                           th:placeholder="#{label.contact_form.placeholder_phoneNumber}"/>
-                    <em th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></em>
-                </div>
-
-                <button type="submit" class="btn btn-primary" th:text="#{label.contact_form.buttonSave}">Save</button>
-            </form>
         </div>
-
     </div>
 </div><!-- /.container -->
 
@@ -62,7 +81,7 @@
             return this.optional( element ) || /[a-zA-Z0-9-\_\.\+\-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9-\.]+/.test( value );
         });
 
-        $("form[name='registration']").validate({
+        $("form[name='createNewStory']").validate({
             rules: {
                 email: {
                     required: true,
