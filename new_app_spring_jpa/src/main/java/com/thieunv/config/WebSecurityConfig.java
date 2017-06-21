@@ -68,7 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .ignoringAntMatchers("/app/**").and().headers()
                 // allow same origin to frame our site to support iframe SockJS
                 .frameOptions().sameOrigin().and().authorizeRequests()
-                .antMatchers("/webjars/**", "/resources/**", "/css/**", "/js/**", "/img/**", "/images/**", "/static/**",
+                .antMatchers("/webjars/**", "/resources/**", "/css/**", "/js/**", "/img/**", "/libs/**", "/images/**", "/static/**",
                         "/password-reminder/**", "/registration/**", "/signup",
                         "/login/**", "/error","/rest/**","/debug/**").permitAll()
                 .antMatchers("/admin/**").hasAuthority(Constant.Role.ROLE_SUBSCRIBER)

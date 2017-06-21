@@ -2,23 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
+    <!-- Standard Meta -->
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link href="../static/img/logo/logoWebsite.png" th:href="@{/img/logo/logoWebsite.png}" rel="shortcut icon" />
 
-    <!-- Bootstrap -->
-    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- Semantic-ui -->
+    <link th:href="@{/webjars/semantic-ui.2.2.10/dist/semantic.min.css}" rel="stylesheet" />
 
     <!-- Custom style -->
     <link th:href="@{/css/main.css}" rel="stylesheet" />
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script type="text/javascript" th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/semantic-ui.2.2.10/dist/semantic.min.js}"></script>
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
